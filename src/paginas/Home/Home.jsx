@@ -36,7 +36,7 @@ import namoroImage from '../../assets/media/home/momentos/namoro.jpg';
 import aniversarioImage from '../../assets/media/home/momentos/aniversario.jpg';
 import { useState,useEffect} from 'react';
 
-import Footer from '../../components/footer/Footer';
+import Footer from '../../components/footer/Footer.jsx';
 
 import { saveCartItems,loadCartItems } from "../Cartstorage";  
 import Cart from "../colares/Cart";
