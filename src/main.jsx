@@ -10,8 +10,7 @@ import Aneis3 from './paginas/Aneis/Aneis3.jsx'
 import Colares from './paginas/colares/Colares.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Brincos from './paginas/Brincos/Brincos.jsx'
-import Carrinho from './paginas/Carinho/Carinho.jsx'
-import Results from './paginas/results/results.jsx'
+
 
 
 
@@ -51,16 +50,9 @@ const router = createBrowserRouter([
       path:"/brincos",
       element:<Brincos/>
     },
-    {
-      path:"/carinho",
-      element:<Carrinho/>
-    },
-    {
+    
       
-        path:"/results",
-        element:<Results/>
-      
-    },
+  
   
 
 
