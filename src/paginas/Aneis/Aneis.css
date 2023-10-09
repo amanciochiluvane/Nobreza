@@ -1,0 +1,17 @@
+.naveg{
+    text-align: center;
+    
+    }
+    .naveg>a>button{
+        background: #c03f1f;
+        height: 40px;
+        width: 50px;
+        color: white;
+        border: 0;
+        margin-left: 20px;
+        border-radius: 5px;
+    }
+    .naveg>a>button:hover{
+        background-color: #d1674c;
+        cursor: pointer;
+    }

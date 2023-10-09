@@ -1,0 +1,150 @@
+.cart{
+    position: fixed;
+    top:170px;
+    background-color: rgb(255, 255, 255);
+    padding: 0 10px;
+    width:85%;
+    border-radius: 10px;
+    
+    display: block;
+    margin: auto !important;
+    height: max-content;
+    z-index: 20;
+    padding-bottom: 30px;
+    
+    
+}
+.invisivel{
+    display: none;
+}
+.cart>h2{
+    color: #E06E51;
+    margin-top: 30px;
+    font-size: medium;
+    
+}
+.logocar{
+    position: absolute;
+    left: 0;
+    margin-top: 20px;
+
+   
+}
+li{
+    margin-top: 30px;
+    width: max-content;
+    display: flex;
+}
+.closser{
+    position: absolute;
+    right: 10px;
+    margin-top: 20px;
+}
+
+
+.imgcarrinho{
+    
+    width: 70px !important;
+}
+.namecarrinho{
+    color: #423838 !important;
+    display: -webkit-box;
+    margin-bottom: 7px;
+    line-height: normal;
+    width: 150px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: small;
+}
+#prec{
+    font-size: small;
+    margin-left: -9px;
+    color:rgb(19, 70, 53);
+}
+.precocarrinho{
+    color: #E06E51;
+    text-transform: uppercase;
+    font-weight: 600;
+    
+}
+.remover{
+    background-color: #b62d0b;
+    border: none;
+    margin-left: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: normal;
+    font-size: normal;
+}
+.remover:hover{
+    background-color: #E06E51;
+}
+
+.Sair{
+    background-color: rgb(167, 167, 8);
+    border: none;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: normal;
+    font-size: normal;
+    width: 60px;
+}
+.Sair:hover{
+    background-color: rgb(230, 230, 34);
+    cursor: pointer;
+}
+.fc{
+    background-color: rgb(6, 125, 85);
+    
+    border: none;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: normal;
+    font-size: normal;
+    width: 170px;
+    
+   
+    
+}
+.fc:hover{
+    background-color:rgb(8, 161, 110) ;
+    cursor: pointer;
+}
+
+@media (min-width:481px) {
+    .namecarrinho{
+        width: 250px;
+    }
+}
+@media (min-width:768px) {
+    .cart>ul{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+    
+    .botoes{
+        display: flex;
+        
+    }
+    @media (min-width:1024px) {
+        .cart{
+            width: 800px;
+            display: block !important;
+            margin: auto !important;
+        }
+        
+    }
+}

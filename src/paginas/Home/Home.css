@@ -1,0 +1,299 @@
+
+
+.Home{
+    overflow-x: hidden;
+}
+.banner01{
+    
+    width: 100vw;
+    height: 130px;
+}
+.banner02{
+    height: 130px;
+    width: 100vw;
+}
+h1{
+    font-size: 12px;
+    font-weight: 600;
+    color: #e8927c;
+    text-align: center;
+    letter-spacing: .5px;
+    margin-top: 15px;
+}
+.Momentos>section>div>P{
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 50px;
+    
+}
+.Momentos>Section>div>a>img{
+    width: 70px;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Banner{
+    margin-bottom: 40px;
+    z-index: 0;
+}
+h2{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 25px;
+    text-align: center;
+}
+.especial>p{
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.Carousellimg{
+    display: flex;
+    overflow-x: auto;
+        
+}
+::-webkit-scrollbar{
+    display: block;
+    height: 5px;
+    width: 6px;
+    background-color: #d1cdcd;
+    border-radius: 10px;
+    
+    
+}
+::-webkit-scrollbar-thumb{
+    background-color: #e8927c;
+}
+.Carousellimg>a>img{
+   margin-bottom: 5px;
+    width: 100vw;
+
+       
+}
+
+.Carousellimg>a>img:hover{
+    border:2px solid #e8927c;
+}
+
+
+.Aliancas>p{
+    
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.Aneis>p{
+    
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.eventos>p{
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.product-card>h2{
+    color: #333333 !important;
+    display: -webkit-box;
+    margin-bottom: 7px;
+    line-height: normal;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-left: 5px;
+
+}
+.product-section{
+    display: flex ;
+    overflow-x: auto; 
+    gap: 10px;
+    
+}
+.product-card{
+    width: 100%;
+}
+
+
+.price{
+    color: #E06E51;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 17px;
+    padding-left: 15px;
+
+}
+.comprar{
+    background: #24cb99;
+    color: white;
+    height: 40px;
+    width: 130px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 5px;
+    margin-left:  15px;
+    margin-bottom: 30px;
+}
+.comprar:hover{
+    background-color: aquamarine;
+    cursor: pointer;
+}
+.eventos{
+    background-color: antiquewhite;
+    padding-top: 20px;
+    margin-top: 100px;
+}
+.eventos>.product-section>.product-card>button{
+    display: none;
+}
+.eventos>.product-section>.product-card>p{
+    display: none;
+    
+}
+
+
+@media (min-width:481px) {
+    .banner01{
+        height: 200px;
+        margin-top: 15px;
+    }
+    .banner02{
+        height: 200px;
+        margin-top: 15px;
+       
+    }
+    h1{
+        font-size: 14px;
+    }
+    .Momentos>Section>div>a>img{
+        width: 100px;
+    }
+    .product-card>img{
+        width: 200px;
+        
+
+    }
+    .product-section{
+        gap: 20px;
+    }
+}
+@media (min-width:768px) {
+    .banner01{
+        height: 300px;
+        
+    }
+    .banner02{
+        height: 300px;
+        
+       
+    }
+    h1{
+        font-size: 14px;
+    }
+    .Momentos>Section>div>a>img{
+        width: 130px;
+    }
+    .Carousellimg>a>img{
+        margin-bottom: 5px;
+         width: 50vw;
+     
+            
+     }
+   
+    
+}
+@media (min-width:1024px) {
+    .banner01{
+        width: 75%;
+        height: 60vh;
+        margin: auto;
+        
+        
+    }
+    .banner02{
+        width: 75%;
+        height: 60vh;
+        margin: auto;
+        
+        
+       
+    }
+    .Banner{
+        margin-top: 20px;
+    }
+
+    h1{
+        margin-top: 50px;
+        font-size: 16px;
+    }
+    .Momentos>Section>div>a>img{
+        width: 150px;
+    }
+    .Carousellimg{
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+    .Carousellimg>a>img{
+        margin-bottom: 5px;
+         width: 40vw;
+
+           
+     }
+     
+     .product-section{
+        width: 70%;
+        margin: auto;
+     }
+     .Aliancas{
+        margin-bottom: 100px;
+        margin-top: 100px;
+    
+    }
+    .comprar{
+        margin-bottom: 100px;
+    }
+    .eventos>.product-section{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        
+    }
+    .eventos>.product-section>.product-card{
+        width: 200px;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        
+    }
+    
+    .eventos{
+        margin-top: 100px;
+        
+        padding-bottom: 30px;
+
+    }
+}
+    @media (min-width:1329px) {
+        .banner01{
+            width: 90%;
+        height: 70vh;
+        margin: auto;
+            
+        }
+        .banner02{
+            width: 90%;
+            height: 70vh;
+            margin: auto;
+            
+           
+        }
+        
+        .Banner{
+            margin-top: 20px;
+        }}
