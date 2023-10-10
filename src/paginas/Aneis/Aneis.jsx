@@ -56,7 +56,7 @@ export default function Aneis(){
   
   // Função para adicionar um item ao carrinho
   const addToCart = (product) => {
-     
+    toggleCart();
     const updatedCart = [...cartItems, product];
     setCartItems(updatedCart);
     

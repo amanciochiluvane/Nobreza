@@ -1,11 +1,11 @@
 .cart{
-    position: fixed;
-    top:170px;
+    position: absolute;
+    top:70px;
     background-color: rgb(255, 255, 255);
     padding: 0 10px;
     width:85%;
     border-radius: 10px;
-    
+    overflow-y: auto;
     display: block;
     margin: auto !important;
     height: max-content;
@@ -61,7 +61,7 @@ li{
 }
 #prec{
     font-size: small;
-    margin-left: -9px;
+    margin-left: 9px;
     color:rgb(19, 70, 53);
 }
 .precocarrinho{
@@ -86,11 +86,11 @@ li{
 }
 
 .Sair{
-    background-color: rgb(167, 167, 8);
+    background-color: #b62d0b;
     border: none;
     display: block;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 30px;
     padding: 5px;
     border-radius: 5px;
     color: white;
@@ -99,7 +99,7 @@ li{
     width: 60px;
 }
 .Sair:hover{
-    background-color: rgb(230, 230, 34);
+    background-color: #E06E51;
     cursor: pointer;
 }
 .fc{
@@ -115,6 +115,7 @@ li{
     font-weight: normal;
     font-size: normal;
     width: 170px;
+    margin-bottom: 30px;
     
    
     
@@ -130,10 +131,35 @@ li{
     }
 }
 @media (min-width:768px) {
-    .cart>ul{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
+    .cart{
+        position: absolute;
     }
+    .cart>ul{
+        
+    }
+    .cart{
+        height: 450px;
+    }
+    .fc{
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        height: 35px;
+    }
+    .Sair{
+        position: absolute;
+        bottom: 30px;
+        left: 50px;
+        height: 35px;
+        background-color: #b62d0b;
+        
+    }
+    .Total{
+        font-size: medium;
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+    
     
     .botoes{
         display: flex;
@@ -144,6 +170,20 @@ li{
             width: 800px;
             display: block !important;
             margin: auto !important;
+        }
+        .cart{
+            row-gap: 10px;
+            height: max-content;
+        }
+        li{
+            width: 350px;
+        }
+        .namecarrinho{
+            -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        }
+        .imgcarrinho{
+            width: 100px !important;
         }
         
     }

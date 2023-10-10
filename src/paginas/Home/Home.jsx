@@ -48,7 +48,7 @@ function ProductCard(props) {
       <img src={props.image} alt={props.name} />
       <h2>{props.name}</h2>
       <p className='price'>POR:{props.price}</p>
-      <button className='comprar' onClick={props.addToCart}>Comprar</button>
+      <button className='comprar' onClick={props.addToCart} >Comprar</button>
     </div>
   );
 }
@@ -77,7 +77,7 @@ export default function Home(){
   
   // Função para adicionar um item ao carrinho
   const addToCart = (product) => {
-     
+     toggleCart();
     const updatedCart = [...cartItems, product];
     setCartItems(updatedCart);
     

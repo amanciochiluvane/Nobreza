@@ -44,7 +44,7 @@ export default function Aliancas2(){
   
   // Função para adicionar um item ao carrinho
   const addToCart = (product) => {
-     
+    toggleCart();
     const updatedCart = [...cartItems, product];
     setCartItems(updatedCart);
     

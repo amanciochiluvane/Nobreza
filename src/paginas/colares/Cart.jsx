@@ -1,7 +1,11 @@
 import React from "react";
 import './Cart.css';
 import { PDFDocument, rgb,StandardFonts } from 'pdf-lib';
-import logo from '../../assets/static/version1683133093/frontend/VirtualJewels/ThemeLabs/pt_BR/images/logo-header-nobreza.png'; 
+import logo from '../../assets/static/version1683133093/frontend/VirtualJewels/ThemeLabs/pt_BR/images/logo-header-nobreza.png'
+
+
+
+
 
 
 async function generatePDF(cartItems,total) {
@@ -92,20 +96,29 @@ async function generatePDF(cartItems,total) {
     color: rgb(0, 0, 0), // Cor da linha (preto)
   });
 
+  const contentText = cartItems.map((item) => {
+    return `${item.name} - ${item.price}`; // Use template literals para concatenar o nome e o preço
+  }).join('\n');
 
+  const tot=` ${total.toFixed(3)}MT`
   // Encode o PDF em um array de bytes
   const pdfBytes = await pdfDoc.save();
-
+  
   // Crie um objeto Blob a partir dos bytes do PDF
   const blob = new Blob([pdfBytes], { type: 'application/pdf' });
 
+ const whtsurl=`https://wa.me/+258844165303?text=Olá! Confira o meu carinho:${contentText} Total:${tot}`
   // Crie um URL para o Blob
   const pdfUrl = URL.createObjectURL(blob);
-
+  window.open(whtsurl);
   // Abra o PDF em uma nova guia ou janela
-  window.open(pdfUrl);
+  /**
+ */
+  
   }
 
+  
+  
 // Componente Cart
 function Cart(props) {
   const { cartItems, removeFromCart, toggleCart } = props;
@@ -144,7 +157,7 @@ function Cart(props) {
       <div className="botoes">
       <button className="Sair" onClick={() => toggleCart()}>Sair</button>
       <button className="fc" onClick={() => generatePDF(cartItems,total)}>Finalizar Compra</button>
-      <p>Total: {total.toFixed(3)}MT</p>
+      <p className="Total">Total: {total.toFixed(3)}MT</p>
       </div>
       
       
@@ -154,5 +167,4 @@ function Cart(props) {
 }
 
 export default Cart;
-
 
