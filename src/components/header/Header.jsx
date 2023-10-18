@@ -40,7 +40,7 @@ export default function Header({toggleCart,cartItems,handleSearch}){
                 <img src={menu} className='burguermenu' onClick={mostrarmenu} alt="Burguermenu" />
                
                 <img src={logo} className='logotipo' alt="Logotipo - Ouriversaria Nobreza" />
-                <input type="text" placeholder="Pesquisar" className="barrapesquisa" id='pesqu' onChange={handleSearch} />
+                <input type="text" placeholder="Pesquisar…(Anéis,Alianças,Colares,Brincos)... " className="barrapesquisa" id='pesqu' onChange={handleSearch} />
 
                 <img src={lupa} className='lupap' alt="Lupa pesquisa"/>
                 <img src={carinhocompras} onClick={() => toggleCart()} 

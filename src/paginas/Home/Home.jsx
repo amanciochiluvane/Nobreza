@@ -253,6 +253,67 @@ export default function Home(){
         speed:1,
         nextArrow: null, 
         prevArrow: null,}
+
+        var settings2 = {
+          dots: false,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        autoplay:false,
+        speed:500,
+        nextArrow: <CustomNextArrow />,
+        prevArrow: <CustomPrevArrow />,
+          responsive:[
+            {
+              breakpoint:2024,
+            settings:{
+              slidesToShow: 5,
+              slidesToScroll: 5,
+            }},
+            {
+              breakpoint:1024,
+            settings:{
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            }},
+            {
+            breakpoint:768,
+            settings:{
+              slidesToShow: 2,
+              slidesToScroll: 2,
+            }},
+            {
+              breakpoint:481,
+            settings:{
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            }}
+
+          ]
+
+          
+          
+         }
+         function CustomNextArrow(props) {
+          const { onClick } = props;
+        
+          return (
+            <button className="custom-next-arrow" onClick={onClick}>
+              {">"}
+            </button>
+          );
+        }
+        function CustomPrevArrow(props) {
+          const { onClick } = props;
+        
+          return (
+            <button className="custom-prev-arrow" onClick={onClick}>
+              {"<"}
+            </button>
+          );
+        }
+        
         
     return(
         <div className="Home">
@@ -296,7 +357,7 @@ export default function Home(){
                     <p style={{ display: isSearching ? 'none' : 'block' }}>As peças com fio de ouro são o presente ideal para selar o amor com sofisticação, e muita beleza </p>
 
                     <div className={isSearching ?"invisivel":"product-section"} id="normais" >
-                    
+                    <Slider {...settings2}>
                         {products.map((product) => (
                             <ProductCard
                             key={product.id}
@@ -305,7 +366,9 @@ export default function Home(){
                             image={product.image}
                             addToCart={() => addToCart(product)}
         />
-      ))} 
+        
+      ))}
+     </Slider>
 
                 </div>
 
@@ -330,7 +393,7 @@ export default function Home(){
                     <p>A forma perfeita de surpreender a pessoa amada e demonstrar toda a força e beleza do amor!  </p>
 
                     <div className="product-section">
-                    
+                    <Slider {...settings2}>
                         {products2.map((product) => (
                             <ProductCard
                             key={product.id}
@@ -340,7 +403,7 @@ export default function Home(){
                             addToCart={() => addToCart(product)}
         />
       ))} 
-
+      </Slider>
                 </div>
 
                 </div>

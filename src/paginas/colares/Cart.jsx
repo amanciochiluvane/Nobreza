@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import './Cart.css';
 import { PDFDocument, rgb,StandardFonts } from 'pdf-lib';
 import logo from '../../assets/static/version1683133093/frontend/VirtualJewels/ThemeLabs/pt_BR/images/logo-header-nobreza.png'
+import Finalizar from "../finalizar/Finalizar";
+
 
 
 
@@ -10,6 +12,7 @@ import logo from '../../assets/static/version1683133093/frontend/VirtualJewels/T
 
 async function generatePDF(cartItems,total) {
   
+        
   // Crie um novo documento PDF em branco
   const pdfDoc = await PDFDocument.create();
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -18,7 +21,7 @@ async function generatePDF(cartItems,total) {
   // Adicione uma nova página ao documento
   const page = pdfDoc.addPage([600,600]);
   
-
+  
   // Escreva as informações do carrinho na página
   const response2 = await fetch(logo);
     const imageBytes2 = await response2.arrayBuffer();
@@ -110,21 +113,34 @@ async function generatePDF(cartItems,total) {
  const whtsurl=`https://wa.me/+258844165303?text=Olá! Confira o meu carinho:${contentText} Total:${tot}`
   // Crie um URL para o Blob
   const pdfUrl = URL.createObjectURL(blob);
-  window.open(whtsurl);
+  //window.open(whtsurl);
   // Abra o PDF em uma nova guia ou janela
   /**
  */
   
   }
+  
 
   
   
 // Componente Cart
 function Cart(props) {
   const { cartItems, removeFromCart, toggleCart } = props;
-
+  
+  const [carrinho, setCarrinho]=useState(true);
+  
+  function abrir(){
+    if(carrinho==true){
+      setCarrinho(false);
+  
+    }
+    else{
+      setCarrinho(true);
+    }
+  }
   const validCartItems = cartItems.filter((item) => typeof item.price === 'string');
 
+  
   // Calcular o total dos preços dos itens no carrinho
   const total = validCartItems.reduce((accumulator, item) => {
     // Remover "MT" e converter a string em um número
@@ -156,10 +172,13 @@ function Cart(props) {
       
       <div className="botoes">
       <button className="Sair" onClick={() => toggleCart()}>Sair</button>
-      <button className="fc" onClick={() => generatePDF(cartItems,total)}>Finalizar Compra</button>
+     <button className="fc" onClick={abrir}>Finalizar Compra</button>
       <p className="Total">Total: {total.toFixed(3)}MT</p>
       </div>
-      
+
+      <div className={carrinho?"invisivel":"mostr"}>
+        <Finalizar cartItems={cartItems} total={total}/>
+      </div>
       
       
     </div>

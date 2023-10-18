@@ -1,15 +1,20 @@
 
-
+.custom-next-arrow:hover{
+    cursor: pointer;
+}
+.custom-prev-arrow:hover{
+    cursor: pointer;
+}
 .Home{
     overflow-x: hidden;
 }
 .banner01{
     
     width: 100vw;
-    height: 130px;
+    height: 150px;
 }
 .banner02{
-    height: 130px;
+    height: 150px;
     width: 100vw;
 }
 h1{
@@ -38,6 +43,7 @@ section{
 .Banner{
     margin-bottom: 40px;
     z-index: 0;
+    margin-top: -10px;
 }
 h2{
     font-size: 14px;
@@ -97,26 +103,62 @@ h2{
     text-align: center;
     margin-bottom: 25px;
 }
-.product-card>h2{
-    color: #333333 !important;
+.p
+.product-card > h2 {
     display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    max-height: 5px; /* Defina um valor de altura máxima que corresponda à altura de uma linha de texto */
+    color: #333333 !important;
     margin-bottom: 7px;
     line-height: normal;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     margin-left: 5px;
+}
+.product-card > h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona "..." se o texto estiver muito longo */
+    /* Outros estilos desejados */
+  }
 
+.product-card>img{
+ width: 120px;
+ margin: auto;
+  
 }
-.product-section{
-    display: flex ;
-    overflow-x: auto; 
-    gap: 10px;
-    
+.custom-next-arrow{
+    position: absolute;
+    right: 15px;
+    margin-top: -200px;
+    height: 40px;
+    width: 40px;
+    background-color: #f9c2b4;
+    color: #6b6b6b;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bolder;
 }
+.custom-prev-arrow{
+    position: absolute;
+    left: 15px;
+    margin-top: 67px;
+    height: 40px;
+    width: 40px;
+    background-color: #f9c2b4;
+    color: #6b6b6b;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
 .product-card{
-    width: 100%;
+    margin: auto;
+    width: 150px;
 }
+
 
 
 .price{
@@ -146,7 +188,15 @@ h2{
     background-color: antiquewhite;
     padding-top: 20px;
     margin-top: 100px;
+    overflow: auto;
+    
 }
+.eventos>.product-section{
+    display: flex;
+    gap: 10px;
+    overflow: auto;
+}
+
 .eventos>.product-section>.product-card>button{
     display: none;
 }
@@ -166,6 +216,10 @@ h2{
         margin-top: 15px;
        
     }
+    .custom-prev-arrow{
+        margin-top: 150px;
+        z-index: 1;
+    }
     h1{
         font-size: 14px;
     }
@@ -174,11 +228,17 @@ h2{
     }
     .product-card>img{
         width: 200px;
-        
 
     }
+    div.slick-slide.slick-active.slick-current{
+        width:200px;
+    }
+    .product-card{
+        width: 200px;
+        margin: auto;
+    }
     .product-section{
-        gap: 20px;
+        
     }
 }
 @media (min-width:768px) {
@@ -222,9 +282,7 @@ h2{
         
        
     }
-    .Banner{
-        margin-top: 20px;
-    }
+    
 
     h1{
         margin-top: 50px;
@@ -244,9 +302,16 @@ h2{
 
            
      }
+     .custom-next-arrow{
+        margin-top: -270px;
+        right: -50px;
+     }
+     .custom-prev-arrow{
+        left: -50px;
+     }
      
      .product-section{
-        width: 70%;
+        width: 80%;
         margin: auto;
      }
      .Aliancas{
@@ -274,7 +339,7 @@ h2{
     
     .eventos{
         margin-top: 100px;
-        
+    
         padding-bottom: 30px;
 
     }
@@ -294,6 +359,4 @@ h2{
            
         }
         
-        .Banner{
-            margin-top: 20px;
-        }}
+        }

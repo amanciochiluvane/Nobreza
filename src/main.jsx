@@ -10,6 +10,7 @@ import Aneis3 from './paginas/Aneis/Aneis3.jsx'
 import Colares from './paginas/colares/Colares.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Brincos from './paginas/Brincos/Brincos.jsx'
+import Finalizar from './paginas/finalizar/Finalizar.jsx'
 
 
 
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
       path:"/brincos",
       element:<Brincos/>
     },
+    
     
       
   
