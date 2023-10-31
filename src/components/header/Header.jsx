@@ -13,7 +13,7 @@ import voltar from '../../assets/voltar.png'
 export default function Header({toggleCart,cartItems,handleSearch}){
     const [menub,setMenub]=useState(true);
     const [cartItemCount, setCartItemCount] = useState(0);
-    
+    const [pesquisaprod,SetPesquisaprod]=useState(false);
     
 
     useEffect(() => {
@@ -33,19 +33,29 @@ export default function Header({toggleCart,cartItems,handleSearch}){
             setMenub(true);
         }
     }
+    function pesqus(){
+        
+        if(pesquisaprod == true){
+            SetPesquisaprod(false);
+        }
+        else{
+            SetPesquisaprod(true);
+        }
+    }
 
     return(
         <div className="Header">
             <div className="introheader">
-                <img src={menu} className='burguermenu' onClick={mostrarmenu} alt="Burguermenu" />
+                <img src={menu} className={pesquisaprod?"invisivel":"burguermenu"} onClick={mostrarmenu} alt="Burguermenu" />
                
-                <img src={logo} className='logotipo' alt="Logotipo - Ouriversaria Nobreza" />
-                <input type="text" placeholder="Pesquisar…(Anéis,Alianças,Colares,Brincos)... " className="barrapesquisa" id='pesqu' onChange={handleSearch} />
+                <img src={logo} className={pesquisaprod?"invisivel":"logotipo"} alt="Logotipo - Ouriversaria Nobreza" />
+                <input type="text" placeholder="Pesquisar…(Anéis,Alianças,Colares,Brincos)... " className={pesquisaprod?'barrapesquisa':'barrapesquisa2'} id='pesqu' onChange={handleSearch} />
 
-                <img src={lupa} className='lupap' alt="Lupa pesquisa"/>
+                <img src={lupa} className={pesquisaprod?"invisivel":"lupap"} alt="Lupa pesquisa" onClick={pesqus} />
                 <img src={carinhocompras} onClick={() => toggleCart()} 
-                className='carinho' alt="Carrinhodecompras" />
-                <sup>{cartItemCount}</sup>
+                className={pesquisaprod?'invisivel':"carinho"} alt="Carrinhodecompras" />
+                <sup className={pesquisaprod?"invisivel":"supp"}>{cartItemCount}</sup>
+                <p className={pesquisaprod?"sairpes":"invisivel"} onClick={pesqus}>X</p>
                 
             </div>
             

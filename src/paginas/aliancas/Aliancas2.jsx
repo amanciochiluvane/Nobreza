@@ -1,16 +1,7 @@
 import Header from "../../components/header/Header";
-import all1 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_onduladas_com_zircónias_5mm_ouro_prata.jpg?width=225'
-import all2 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_super_ovais_2.5mm_ouro_branco_com_banho_de_rodio.jpg?width=225'
-import all3 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliança_super_ovais_3.5mm_ouro_branco_com_banho_de_rodio.jpg?width=400&amp;quality=100'
-import all4 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_super_ovais_com_zircónia_3.5mm_ouro_branco_com_banho_de_rodio.jpg?width=400&amp;quality=100'
-import all5 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_super_ovais_3.5mm_ouro_SA.jpg?width=400&amp;quality=100'
-import all6 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_quadradas_4mm_ouro_SA.jpg?width=400&amp;quality=100'
-import all7 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_tradicionais_5mm_ouro.jpg?width=400&amp;quality=100'
-import all8 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_quadradas_6mm.jpg?width=400&amp;quality=100'
-import all9 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_3_colour_com_ouro_branco_no_centro_6mm.jpg?width=400&amp;quality=100'
-import all10 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/alianças_3_colour_com_fosco_diamantado_e_ouro_branco_no_centro_6mm.jpg?width=400&amp;quality=100'
-import all11 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_onduladas_com_zirconias_5mm_ouro.jpg?width=400&amp;quality=100'
-import all12 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas_com_friso_lateral_e_zircônias_6mm_ouro.jpg?width=400&amp;quality=100'
+
+
+import {client} from '../../../lib/client'
 
 
 import { useState,useEffect} from 'react';
@@ -35,10 +26,21 @@ function ProductCard(props) {
 
 export default function Aliancas2(){
   const [cartItems, setCartItems] = useState([]);
+  const [products,setProducts]=useState([]);
+
   useEffect(() => { 
     const storedCartItems = loadCartItems();
       setCartItems(storedCartItems);
     
+  }, []);
+
+  useEffect(() => {
+    const query = `*[_type == "aliancas2"]{
+      nome,
+      preco,
+      "image": image.asset->url
+    }`;
+    client.fetch(query).then((data) => setProducts(data));
   }, []);
  
   
@@ -65,86 +67,12 @@ export default function Aliancas2(){
   }
 
   // Função para remover um item do carrinho
-  const removeFromCart = (productId) => {
-    const updatedCart = cartItems.filter((item) => item.id !== productId);
+  const removeFromCart = (product) => {
+    const updatedCart = cartItems.filter((item) => item !== product);
     setCartItems(updatedCart);
-    saveCartItems(updatedCart)
+    saveCartItems(updatedCart);
   };
 
-    const products=[
-        {
-            id: 123,
-            name: "Alianças Onduladas com Zircónias, 5mm, Ouro e Prata",
-            image: all1,
-            price:"26.000MT"
-        }, 
-        {
-            id: 223,
-            name: "Alianças Super Ovais, 2.5mm, Ouro Branco com Banho de Ródio",
-            image: all2,
-            price: "20.300MT"
-        }, 
-        {
-            id: 323,
-            name: "Alianças Super Ovais, 3.5mm, Ouro Branco com Banho de Ródio",
-            image: all3,
-            price: "34.700MT"
-        }, 
-        {
-            id: 423,
-            name: "Alianças Super Ovais com Zircónia, 3.5mm, Ouro Branco com Banho de Ródio",
-            image: all4,
-            price: "36.000MT"
-        }, 
-        {
-            id: 523,
-            name: "Alianças Super Ovais, 3.5mm Ouro SA",
-            image: all5,
-            price: "29.400MT"   
-        },
-        {
-            id: 623,
-            name: "Alianças Quadradas, 5mm Ouro SA ",
-            image: all6,
-            price: "11.000MT"   
-        },
-        {
-            id: 723,
-            name: "Alianças Tradicionais, 5mm, Ouro SA",
-            image: all7,
-            price: "13.750MT"   
-        },
-        {
-            id: 823,
-            name: "Alianças Quadradas, 6mm",
-            image: all8,
-            price: "17.500MT"   
-        },
-        {
-            id: 923,
-            name: "Alianças 3 Colour, com Ouro Branco no Centro, 6mm",
-            image: all9,
-            price: "63.000MT"   
-        },
-        {
-            id: 1023,
-            name: "Alianças 3 Colour, com Fosco Diamantado e Ouro Branco no Centro, 6mm",
-            image: all10,
-            price: "65.000MT"   
-        },
-        {
-            id: 1123,
-            name: "Alianças Onduladas com Zircónias, 5mm, Ouro SA",
-            image: all11,
-            price: "36.000MT"   
-        },
-        {
-            id: 1223,
-            name: "Alianças com Friso Lateral e Zircônias, 6mm, Ouro SA",
-            image: all12,
-            price: "48.000MT"   
-        },
-    ]
 
     const [isSearching, setIsSearching] = useState(false);
 const [searchQuery, setSearchQuery] = useState('');
@@ -154,10 +82,26 @@ const handleSearch = (event) => {
     setIsSearching(event.target.value !== '');
   };
 const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    product.nome.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-
+  function formatNumberWithCommas(number) {
+    // Converte o número para string
+    const numStr = number.toString();
+  
+    // Divide a string em partes de três dígitos a partir da direita
+    const parts = [];
+    let i = numStr.length;
+    while (i > 0) {
+      const chunk = numStr.substring(Math.max(0, i - 3), i);
+      parts.unshift(chunk); // Adiciona a parte no início do array
+      i -= 3;
+    }
+  
+    // Junta as partes com vírgulas
+    return parts.join(',');
+  }
+  
     return(
       
         <div className="aliancas">
@@ -173,8 +117,8 @@ const filteredProducts = products.filter((product) =>
                         {products.map((product) => (
                             <ProductCard
                             key={product.id}
-                            name={product.name}
-                            price={product.price}
+                            name={product.nome}
+                            price={formatNumberWithCommas(product.preco) + "MT"}
                             image={product.image}
                             addToCart={() => addToCart(product)}
         />
@@ -187,8 +131,8 @@ const filteredProducts = products.filter((product) =>
         {filteredProducts.map((product) => (
           <ProductCard
             key={product.id}
-            name={product.name}
-            price={product.price}
+            name={product.nome}
+            price={formatNumberWithCommas(product.preco) + "MT"}
             image={product.image}
             addToCart={() => addToCart(product)}
           />

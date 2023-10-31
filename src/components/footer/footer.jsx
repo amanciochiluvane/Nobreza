@@ -1,6 +1,6 @@
 import React from 'react'
-import fb from '../../assets/static/version1683133093/frontend/VirtualJewels/ThemeLabs/pt_BR/Vj_Footer/images/icon-facebook-vj.svg'
-import insta from '../../assets/static/version1683133093/frontend/VirtualJewels/ThemeLabs/pt_BR/Vj_Footer/images/icon-instagram-vj.svg'
+import fb from '../../assets/Vj_Footer/images/icon-facebook-vj.svg'
+import insta from '../../assets/Vj_Footer/images/icon-instagram-vj.svg'
 import './footer.css'
 
 export default function Footer(){

@@ -1,34 +1,15 @@
 import './Home.css';
 import Header from '../../components/header/Header'
-import banner1 from '../../assets/media/campanhas/2023/4-abril/ouriversarianobrezabanner.jpg'
-import banner2 from '../../assets/media/campanhas/2023/5-maio/nobreza-banner-mes-de-marco-desk.jpg'
+
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
 import Slider from 'react-slick';
-import ali from'../../assets/media/minimenu/desk/minimenu-desk-aliancasdecasamento-v4.jpg'
-import anel from '../../assets/media/minimenu/desk/minimenu-desk-kitsdenoivado-v5.jpg'
-import brinc  from '../../assets/media/minimenu/desk/minimenu-desk-brincos-v4.jpg'
-import sli1 from '../../assets/media/home/colecoes/home-colecaobemquerera505.jpg?quality=100'
-import sli2 from '../../assets/media/home/colecoes/home-colecao-inspiracoes-v2.jpg'
+import ali from'../../assets/minimenu/desk/minimenu-desk-aliancasdecasamento-v4.jpg'
+import anel from '../../assets/minimenu/desk/minimenu-desk-kitsdenoivado-v5.jpg'
+import brinc  from '../../assets/minimenu/desk/minimenu-desk-brincos-v4.jpg'
 
 
-import a1 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-compromisso-ouro-e-prata-quadradas-diamantadas-12g-6mm_17607.jpg';
-import a2 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-namoro-ouro-e-prata-polidas-e-diamantadas-5-5-mm-12g7607.jpg?width=225';
-import a3 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-compromisso-ouro-e-prata-foscas-4mm-8g7607.jpg?width=225';
-import a4 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-namoro-ouro-prata-_polidas-3-5mm-8g7607.jpg?width=225';
-import a5 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-ouro-prata-diamantadas-7mm-12g7607.jpg?width=225';
-import a6 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-compromisso-prata-polida-7mm-14g-vj1316-3d7607.jpg?width=225';
-import a7 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-namoro-ouro-e-prata-diamantadas-e-polidas-6-mm-12-g-vj1945-3d7607.jpg?width=225';
-import a8 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-compromisso-ouro-e-prata-polidas-5mm-8g7607.jpg?width=225';
-import a9 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/l/aliancas-compromisso-ouro-e-prata-foscas-e-polidas-5-5mm-10g7607.jpg?width=225';
-
-import an1 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/k/i/AP5_Aparador com_Pedrinhas2mm(10.000).jpg?width=225';
-import an2 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/k/i/AP6_Aparador com_Pedrinhas_2mm_OuroSA(11.000).jpg?width=225';
-import an3 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/k/i/ER7_Anel_de_Pedra.Lisa_3.5mm(6.000).jpg?width=225';
-import an4 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/k/i/ER9_AneldePedraCruzado_(7.200).jpg?width=225';
-import an5 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/k/i/A13_Anel.Cruzado.comBolaePedra.jpg?width=225';
-import an6 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/k/i/kitaliancascompromissoprataanelpratapassion_17607.jpg?width=225';
 import casamentoImage from '../../assets/media/home/momentos/casamento.jpg';
 import noivadoImage from '../../assets/media/home/momentos/Noivado.jpg';
 import loboloImage from '../../assets/media/home/momentos/lobolo.jpg';
@@ -36,10 +17,11 @@ import namoroImage from '../../assets/media/home/momentos/namoro.jpg';
 import aniversarioImage from '../../assets/media/home/momentos/aniversario.jpg';
 import { useState,useEffect} from 'react';
 
-import Footer from '../../components/footer/Footer.jsx';
+import Footer from '../../components/footer/footer.jsx';
 
 import { saveCartItems,loadCartItems } from "../Cartstorage";  
 import Cart from "../colares/Cart";
+import { client } from '../../../lib/client';
 
 function ProductCard(props) {
     
@@ -62,17 +44,55 @@ function ProductCard2(props) {
     </div>
   );
 }
-
+ 
 export default function Home(){
+  const [bannerData, setBannerData] = useState([]);
+  const [colecoes, setColecoes] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [products2, setProducts2] = useState([]);
   
-    
-	
-  const [cartItems, setCartItems] = useState([]);
   useEffect(() => { 
     const storedCartItems = loadCartItems();
       setCartItems(storedCartItems);
     
   }, []);
+  
+  useEffect(() => {
+    
+    const query = `*[_type == "banner"]{
+      "image": image.asset->url
+    }`;
+    client.fetch(query).then((data) => setBannerData(data));
+  }, []);
+  useEffect(() => {
+    
+    const query = `*[_type == "colecoes"]{
+      "image": image.asset->url
+    }`;
+    client.fetch(query).then((data) => setColecoes(data));
+  }, []);
+
+  useEffect(() => {
+    const query = `*[_type == "homealiancas"]{
+      nome,
+      preco,
+      "image": image.asset->url
+    }`;
+    client.fetch(query).then((data) => setProducts(data));
+  }, []);
+
+  useEffect(() => {
+    const query = `*[_type == "homeaneis"]{
+      nome,
+      preco,
+      "image": image.asset->url
+    }`;
+    client.fetch(query).then((data) => setProducts2(data));
+  }, []);
+  
+	
+  const [cartItems, setCartItems] = useState([]);
+ 
  
   
   // Função para adicionar um item ao carrinho
@@ -97,109 +117,31 @@ export default function Home(){
     }
   }
 
+ 
   // Função para remover um item do carrinho
-  const removeFromCart = (productId) => {
-    const updatedCart = cartItems.filter((item) => item.id !== productId);
+  const removeFromCart = (product) => {
+    const updatedCart = cartItems.filter((item) => item !== product);
     setCartItems(updatedCart);
-    saveCartItems(updatedCart)
+    saveCartItems(updatedCart);
   };
 
-    const products = [
-        {
-          id: 199,
-          name: 'Alianças Chanfradas, com Friso, Fosco Diamantado e Coração Vazado, 6mm',
-          price: '42.000MT',
-          image: a1,
-        },
-        {
-          id: 299,
-          name: 'Alianças Namoro Ouro E Prata Polidas e Diamantadas 5,5 mm 12g',
-          price: '17.500MT',
-          image: a2,
-        },
-        {
-          id: 399,
-          name: 'Alianças Compromisso Ouro E Prata Foscas 4mm 8g',
-          price: '10.000MT',
-          image: a3,
-        },
-        {
-          id: 499,
-          name: 'Alianças Namoro Ouro E Prata Polidas 3,5mm 8g',
-          price: '10.000MT',
-          image: a4,
-        },
-        {
-          id: 599,
-          name: 'Alianças Tradicionais, 5mm',
-          price: '12.500MT',
-          image: a5,
-        },
-        {
-          id: 699,
-          name: 'Alianças com Friso e Fosco no Centro, 5mm + Anel de 6 Garras, Aro 3 em 1',
-          price: '30.600MT',
-          image: a6,
-        },
-        {
-          id: 799,
-          name: 'Alianças Tradicionais, 4mm + Anel com Zircónia Transluz',
-          price: '14.200MT',
-          image: a7,
-        },
-        {
-          id: 899,
-          name: 'Alianças Tradicionais, 4mm + Anel com Zircónia Transluz, Ouro SA',
-          price: '15.600MT',
-          image: a8,
-        },
-        {
-          id: 999,
-          name: 'Alianças Super Ovais, 2.5mm + Aparador com Pedrinhas',
-          price: '25.600MT',
-          image: a9,
-        }
-        
-        
-      ];
-      const products2 = [
-        {
-          id: 198,
-          name: "Kit Alianças Namoro Prata Linha Classic + Anel Prata Solitário",
-          price: "12.500MT",
-          image: an1,
-        },
-        {
-          id: 298,
-          name: "Kit Alianças Compromisso Prata + Anel Prata Lively",
-          price: "11.000MT",
-          image: an2,
-        },
-        {
-          id: 398,
-          name: "Kit Alianças Compromisso Prata 4,5mm + Anel Prata Inspiration",
-          price: "6.000MT",
-          image: an3,
-        },
-        {
-          id: 498,
-          name: "Kit Alianças Namoro Prata 2,5mm + Anel Prata Affection",
-          price: "7.200MT",
-          image: an4,
-        },
-        {
-          id: 598,
-          name: "Kit Alianças Namoro Ouro e Prata Linha Carrê + Anel Prata Inspiration",
-          price: "7.800MT",
-          image: an5,
-        },
-        {
-          id: 698,
-          name: "Kit Alianças Compromisso Prata + Anel Prata Passion",
-          price: "7.700MT",
-          image:an6,
-        },
-      ];
+  function formatNumberWithCommas(number) {
+    // Converte o número para string
+    const numStr = number.toString();
+  
+    // Divide a string em partes de três dígitos a partir da direita
+    const parts = [];
+    let i = numStr.length;
+    while (i > 0) {
+      const chunk = numStr.substring(Math.max(0, i - 3), i);
+      parts.unshift(chunk); // Adiciona a parte no início do array
+      i -= 3;
+    }
+  
+    // Junta as partes com vírgulas
+    return parts.join(',');
+  }
+      
       const moments = [
         {
           id:7668,
@@ -234,9 +176,19 @@ export default function Home(){
           setSearchQuery(event.target.value);
           setIsSearching(event.target.value !== '');
         };
-      const filteredProducts = products.filter((product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+        const filteredProducts = products.filter((product) => {
+          // Check if the product is not null or undefined
+          if (product) {
+            // Check if the 'nome' property exists and is a string
+            if (product.nome && typeof product.nome === 'string') {
+              // Check if 'nome' contains the search query (case-insensitive)
+              return product.nome.toLowerCase().includes(searchQuery.toLowerCase());
+            }
+          }
+          // If any of the checks fail, exclude this product from the filtered list
+          return false;
+        });
+        
       
       
 
@@ -286,8 +238,8 @@ export default function Home(){
             {
               breakpoint:481,
             settings:{
-              slidesToShow: 1,
-              slidesToScroll: 1,
+              slidesToShow: 2,
+              slidesToScroll: 2,
             }}
 
           ]
@@ -318,17 +270,19 @@ export default function Home(){
     return(
         <div className="Home">
             <Header toggleCart={toggleCart} cartItems={cartItems} handleSearch={handleSearch}/>
-            
+              
                 <div className={isSearching ?"invisivel":"Banner"} >
                     <Slider {...settings}>
-                        <div id='slid'>
-                        <img src={banner1} className='banner01' alt="Banner celsonotico"/>
-                        </div>
+                      
+                    {bannerData.map((banner, index) => (
+                    <div key={index} id='slid'>
+                    <img src={banner.image} className={`banner0${index + 1}`} alt={`Banner celso ${index + 1}`} />
+                   </div>
+                    ))}
 
-                        <div id='slid'>
-                        <img src={banner2} className='banner02' alt="Banner celso" />
+                        
                     
-                        </div>
+                        
                         </Slider>
                     
                 </div>
@@ -347,22 +301,29 @@ export default function Home(){
                 <div className={isSearching ?"invisivel":"especial"} >
                 <h2>COLEÇÕES</h2>
                 <p>Você é especial e merece joias especiais</p>
-                <div className='Carousellimg'>
-                    <a href="/aneis"><img src={sli1} alt="imagem,com anel"/></a>
-                    <a href="/aliancas"><img src={sli2} alt="imagem de um jovem casado" /></a>
-                </div>
+                {colecoes && colecoes.length >= 2 && (
+                  <div className='Carousellimg'>
+                    <a href="/aneis">
+                      <img src={colecoes[0].image} alt="imagem com anel" />
+                    </a>
+                    <a href="/aliancas">
+                      <img src={colecoes[1].image} alt="imagem de um jovem casado" />
+                    </a>
+                  </div>
+                )}
                 </div>
                 <div className="Aliancas" >
                     <h2 style={{ display: isSearching ? 'none' : 'block' }}>COLEÇÃO ALIANÇAS E CONJUNTOS DE CASAMENTO</h2>
                     <p style={{ display: isSearching ? 'none' : 'block' }}>As peças com fio de ouro são o presente ideal para selar o amor com sofisticação, e muita beleza </p>
 
+                     
                     <div className={isSearching ?"invisivel":"product-section"} id="normais" >
                     <Slider {...settings2}>
                         {products.map((product) => (
                             <ProductCard
                             key={product.id}
-                            name={product.name}
-                            price={product.price}
+                            name={product.nome}
+                            price={formatNumberWithCommas(product.preco) + "MT"}
                             image={product.image}
                             addToCart={() => addToCart(product)}
         />
@@ -377,8 +338,8 @@ export default function Home(){
         {filteredProducts.map((product) => (
           <ProductCard
             key={product.id}
-            name={product.name}
-            price={product.price}
+            name={product.nome}
+            price={formatNumberWithCommas(product.preco) + "MT"}
             image={product.image}
             addToCart={() => addToCart(product)}
           />
@@ -397,8 +358,8 @@ export default function Home(){
                         {products2.map((product) => (
                             <ProductCard
                             key={product.id}
-                            name={product.name}
-                            price={product.price}
+                            name={product.nome}
+                            price={formatNumberWithCommas(product.preco) + "MT"}
                             image={product.image}
                             addToCart={() => addToCart(product)}
         />
@@ -436,6 +397,7 @@ export default function Home(){
             </div>
 
             <Footer/>
+
         </div>
     )
 }

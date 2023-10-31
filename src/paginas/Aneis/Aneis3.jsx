@@ -1,17 +1,10 @@
 import Header from "../../components/header/Header";
 
-import an37 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_de_4_garras_base_bedonda.jpg?width=225';
-import an38 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_de_4_Garras_Base_Redonda.jpg?width=225';
-import an39 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_de_4_Garras_Base_Redonda_Ouro_SA.jpg?width=400&quality=100';
-import an40 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_de_4_garras_com_fosco.jpg?width=400&quality=100';
-import an41 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_de_3_garras_com_pedra_de_coracao_e_aro_super_oval.jpg?width=400&quality=100';
-import an42 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_de_3_garras_com_pedra_de_coração_e_aro_super_oval_ouro_SA.jpg?width=400&quality=100';
-import an43 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_cavalheiro.jpg?width=400&quality=100';
-import an44 from '../../assets/media/catalog/product/cache/cc00d9579d5bcf7c4f4a49c7579f7d3e/a/n/anel_cavalheiro_ouro_SA.jpg?width=400&quality=100';
+
 
 import { useState,useEffect} from 'react';
 
-
+import {client} from '../../../lib/client'
 import { saveCartItems,loadCartItems } from "../Cartstorage";
 
 
@@ -32,10 +25,19 @@ function ProductCard(props) {
 
 export default function Aneis3(){
   const [cartItems, setCartItems] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => { 
     const storedCartItems = loadCartItems();
       setCartItems(storedCartItems);
     
+  }, []);
+  useEffect(() => {
+    const query = `*[_type == "aneis3"]{
+      nome,
+      preco,
+      "image": image.asset->url
+    }`;
+    client.fetch(query).then((data) => setProducts(data));
   }, []);
  
   
@@ -62,63 +64,14 @@ export default function Aneis3(){
   }
 
   // Função para remover um item do carrinho
-  const removeFromCart = (productId) => {
-    const updatedCart = cartItems.filter((item) => item.id !== productId);
+  const removeFromCart = (product) => {
+    const updatedCart = cartItems.filter((item) => item !== product);
     setCartItems(updatedCart);
-    saveCartItems(updatedCart)
+    saveCartItems(updatedCart);
   };
   
 
-    const products =[
-        {
-            id: 134,
-            name: 'Anel de 6 Garras Achatadas, Ouro SA',
-            price: '9.200MT',
-            image: an37,
-          },
-          {
-            id: 234,
-            name: 'Anel de 4 Garras, Base Redonda',
-            price: '7.500MT',
-            image: an38,
-          },
-          {
-            id: 334,
-            name: 'Anel de 4 Garras, Base Redonda, Ouro SA',
-            price: '6.000MT',
-            image: an39,
-          },
-          {
-            id: 434,
-            name: 'Anel de 4 Garras, com Fosco',
-            price: '15.000MT',
-            image: an40,
-          },
-          {
-            id: 534,
-            name: 'Anel de 3 Garras, com Pedra de Coração e Aro Super Oval',
-            price: '10.000MT',
-            image: an41,
-          },
-          {
-            id: 634,
-            name: 'Anel de 3 Garras, com Pedra de Coração e Aro Super Oval, Ouro SA',
-            price: '11.000MT',
-            image: an42,
-          },
-          {
-            id: 734,
-            name: 'Anel Cavalheiro',
-            price: '20.000MT',
-            image: an43,
-          },
-          {
-            id: 834,
-            name: 'Anel Cavalheiro, Ouro SA',
-            price: '22.000MT',
-            image: an44,
-          },
-    ]
+   
     const [isSearching, setIsSearching] = useState(false);
 const [searchQuery, setSearchQuery] = useState('');
 const handleSearch = (event) => {
@@ -127,8 +80,25 @@ const handleSearch = (event) => {
     setIsSearching(event.target.value !== '');
   };
 const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    product.nome.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  function formatNumberWithCommas(number) {
+    // Converte o número para string
+    const numStr = number.toString();
+  
+    // Divide a string em partes de três dígitos a partir da direita
+    const parts = [];
+    let i = numStr.length;
+    while (i > 0) {
+      const chunk = numStr.substring(Math.max(0, i - 3), i);
+      parts.unshift(chunk); // Adiciona a parte no início do array
+      i -= 3;
+    }
+  
+    // Junta as partes com vírgulas
+    return parts.join(',');
+  }
 
 return(
     <div className="aneis">
@@ -144,8 +114,8 @@ return(
                     {products.map((product) => (
                         <ProductCard
                         key={product.id}
-                        name={product.name}
-                        price={product.price}
+                        name={product.nome}
+                        price={formatNumberWithCommas(product.preco) + "MT"}
                         image={product.image}
                         addToCart={() => addToCart(product)}
     />
@@ -158,8 +128,8 @@ return(
     {filteredProducts.map((product) => (
       <ProductCard
         key={product.id}
-        name={product.name}
-        price={product.price}
+        name={product.nome}
+        price={formatNumberWithCommas(product.preco) + "MT"}
         image={product.image}
         addToCart={() => addToCart(product)}
       />

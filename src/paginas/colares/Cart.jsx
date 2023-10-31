@@ -5,11 +5,6 @@ import logo from '../../assets/static/version1683133093/frontend/VirtualJewels/T
 import Finalizar from "../finalizar/Finalizar";
 
 
-
-
-
-
-
 async function generatePDF(cartItems,total) {
   
         
@@ -100,7 +95,7 @@ async function generatePDF(cartItems,total) {
   });
 
   const contentText = cartItems.map((item) => {
-    return `${item.name} - ${item.price}`; // Use template literals para concatenar o nome e o preço
+    return `${item.nome} - ${item.preco}`; // Use template literals para concatenar o nome e o preço
   }).join('\n');
 
   const tot=` ${total.toFixed(3)}MT`
@@ -138,32 +133,46 @@ function Cart(props) {
       setCarrinho(true);
     }
   }
-  const validCartItems = cartItems.filter((item) => typeof item.price === 'string');
+  
 
   
-  // Calcular o total dos preços dos itens no carrinho
-  const total = validCartItems.reduce((accumulator, item) => {
-    // Remover "MT" e converter a string em um número
-    const priceWithoutMT = parseFloat(item.price.replace('MT', '').replace(',', ''));
+  let total = 0;
 
-    // Certificar-se de que o preço é um número válido
-    if (!isNaN(priceWithoutMT)) {
-      return accumulator + priceWithoutMT;
+// Itere pelos itens no carrinho e some seus preços
+cartItems.forEach(item => {
+  total =total + item.preco;
+});
+
+function formatNumberWithCommas(number) {
+    // Converte o número para string
+    const numStr = number.toString();
+  
+    // Divide a string em partes de três dígitos a partir da direita
+    const parts = [];
+    let i = numStr.length;
+    while (i > 0) {
+      const chunk = numStr.substring(Math.max(0, i - 3), i);
+      parts.unshift(chunk); // Adiciona a parte no início do array
+      i -= 3;
     }
-
-    return accumulator;
-  }, 0);
+  
+    // Junta as partes com vírgulas
+    return parts.join(',');
+  }
+  
   return (
     <div className="cart">
       <h2>Seu Carrinho</h2>
       <ul>
-        {validCartItems.map((item) => (
+        {cartItems.map((item) => (
           <li key={item.id}>
-            <img src={item.image} alt={item.name} className="imgcarrinho"/>
+            <img src={item.image} alt={item.nome} className="imgcarrinho"/>
             <div>
-            <p className="namecarrinho">{item.name}</p>
-            <p className="precocarrinho" id="prec">Por: {item.price}</p>
-            <button onClick={() => removeFromCart(item.id)} className="remover">Remover</button>
+             
+            <p className="namecarrinho">{item.nome}</p>
+            <p className="precocarrinho" id="prec">Por: {formatNumberWithCommas(item.preco) + "MT"}</p>
+            <button className="remover" onClick={() => removeFromCart(item)}>Remover</button>
+            
             </div>
             
           </li>
@@ -173,7 +182,7 @@ function Cart(props) {
       <div className="botoes">
       <button className="Sair" onClick={() => toggleCart()}>Sair</button>
      <button className="fc" onClick={abrir}>Finalizar Compra</button>
-      <p className="Total">Total: {total.toFixed(3)}MT</p>
+      <p className="Total">Total: {formatNumberWithCommas(total) + "MT"} </p>
       </div>
 
       <div className={carrinho?"invisivel":"mostr"}>

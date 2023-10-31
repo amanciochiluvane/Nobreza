@@ -152,6 +152,7 @@ h2{
     border-radius: 5px;
     font-size: 20px;
     font-weight: bolder;
+    z-index: 2;
 }
 
 .product-card{

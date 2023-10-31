@@ -87,6 +87,12 @@ select{
 .ca>ul>li>div>p{
     font-weight: 400 !important;
 }
+.emogisorriso{
+    width: 35px;
+    display: block;
+    margin: auto;
+  
+}
 
 
 @media (min-width:481px){
@@ -148,6 +154,11 @@ select{
         }
         ::-webkit-scrollbar{
             display: none;
+        }
+        .emogisorriso{
+            width: 45px;
+            margin-top: -30px;
+            margin-bottom: 10px;
         }
         
     }
